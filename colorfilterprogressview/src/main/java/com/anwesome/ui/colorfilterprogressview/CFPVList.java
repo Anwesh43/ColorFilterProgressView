@@ -26,7 +26,7 @@ public class CFPVList {
     }
     public void show() {
         if(!isShown) {
-            activity.setContentView(cfpvLayout);
+            activity.setContentView(scrollView);
             isShown = true;
         }
     }
