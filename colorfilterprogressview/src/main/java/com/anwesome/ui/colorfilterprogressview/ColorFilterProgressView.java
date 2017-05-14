@@ -19,9 +19,11 @@ public class ColorFilterProgressView extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private ColorFilterRect colorFilterRect = new ColorFilterRect();
     private ProgressBar progressBar = new ProgressBar();
+    private AnimationHandler animationHandler;
     public ColorFilterProgressView(Context context,Bitmap bitmap) {
         super(context);
         this.bitmap = bitmap;
+        this.animationHandler = new AnimationHandler(this);
     }
     public void setColor(int color) {
         this.color = color;
@@ -42,6 +44,9 @@ public class ColorFilterProgressView extends View {
         postInvalidate();
     }
     public boolean onTouchEvent(MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+            animationHandler.startAnim();
+        }
         return true;
     }
     private class ColorFilterRect {

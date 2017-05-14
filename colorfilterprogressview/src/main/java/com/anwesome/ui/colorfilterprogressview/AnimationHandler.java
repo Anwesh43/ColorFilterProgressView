@@ -11,7 +11,7 @@ public class AnimationHandler extends AnimatorListenerAdapter implements ValueAn
     private int dir = 0;
     private boolean isAnimating = false;
     private ColorFilterProgressView colorFilterProgressView;
-    private AnimationHandler(ColorFilterProgressView colorFilterProgressView) {
+    public AnimationHandler(ColorFilterProgressView colorFilterProgressView) {
         this.colorFilterProgressView = colorFilterProgressView;
     }
     private ValueAnimator upAnim = ValueAnimator.ofFloat(0,1),downAnim = ValueAnimator.ofFloat(1,0);
