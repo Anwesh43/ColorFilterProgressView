@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ViewGroup;
 
+import com.anwesome.ui.colorfilterprogressview.CFPVList;
 import com.anwesome.ui.colorfilterprogressview.ColorFilterProgressView;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,7 +16,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.forest2);
-        ColorFilterProgressView colorFilterProgressView = new ColorFilterProgressView(this,bitmap);
-        addContentView(colorFilterProgressView,new ViewGroup.LayoutParams(300,300));
+        CFPVList cfpvList = new CFPVList(this);
+        for(int i=0;i<25;i++) {
+            cfpvList.addImage(bitmap);
+        }
+        cfpvList.show();
     }
 }
