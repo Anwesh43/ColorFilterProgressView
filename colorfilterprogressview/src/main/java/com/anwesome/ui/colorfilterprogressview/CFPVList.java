@@ -20,7 +20,9 @@ public class CFPVList {
         scrollView.addView(cfpvLayout,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
     public void addImage(Bitmap bitmap,int...color) {
-
+        if(!isShown) {
+            cfpvLayout.addImage(bitmap, color);
+        }
     }
     public void show() {
         if(!isShown) {

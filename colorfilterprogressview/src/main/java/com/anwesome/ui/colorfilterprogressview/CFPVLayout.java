@@ -1,6 +1,7 @@
 package com.anwesome.ui.colorfilterprogressview;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.hardware.display.DisplayManager;
 import android.view.Display;
@@ -22,6 +23,14 @@ public class CFPVLayout extends ViewGroup {
             }
         }
         setMeasuredDimension(w,Math.max(w,newH));
+    }
+    public void addImage(Bitmap bitmap,int...color) {
+        ColorFilterProgressView colorFilterProgressView = new ColorFilterProgressView(getContext(),bitmap);
+        if(color.length == 1) {
+            colorFilterProgressView.setColor(color[0]);
+        }
+        addView(colorFilterProgressView,new LayoutParams(gap,gap));
+        requestLayout();
     }
     public void onLayout(boolean reloaded,int a,int b,int w,int h) {
         int x = gap,y = h/20;
