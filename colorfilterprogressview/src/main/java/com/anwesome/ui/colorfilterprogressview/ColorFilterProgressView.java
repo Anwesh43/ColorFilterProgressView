@@ -15,8 +15,10 @@ import android.view.View;
 public class ColorFilterProgressView extends View {
     private Bitmap bitmap;
     private int color = Color.WHITE,render = 0,w,h;
+    private float maxL = 0;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private ColorFilterRect colorFilterRect = new ColorFilterRect();
+    private ProgressBar progressBar = new ProgressBar();
     public ColorFilterProgressView(Context context,Bitmap bitmap) {
         super(context);
         this.bitmap = bitmap;
@@ -32,23 +34,28 @@ public class ColorFilterProgressView extends View {
         }
         canvas.drawBitmap(bitmap,0,0,paint);
         colorFilterRect.draw(canvas);
+        progressBar.draw(canvas);
         render++;
     }
     public void update(float factor) {
-        colorFilterRect.update(factor);
+        maxL = w*factor;
         postInvalidate();
     }
     public boolean onTouchEvent(MotionEvent event) {
         return true;
     }
     private class ColorFilterRect {
-        private float maxL = 0;
+
         public void draw(Canvas canvas) {
             paint.setColor(Color.argb(130,Color.red(color),Color.green(color),Color.blue(color)));
             canvas.drawRect(new RectF(0,0,maxL,h),paint);
         }
-        public void update(float factor) {
-            maxL = w*factor;
+    }
+    private class ProgressBar {
+        public void draw(Canvas canvas) {
+            paint.setStrokeWidth(h/30);
+            paint.setColor(Color.RED);
+            canvas.drawLine(0,h-paint.getStrokeWidth(),maxL,h-paint.getStrokeWidth(),paint);
         }
     }
 }
