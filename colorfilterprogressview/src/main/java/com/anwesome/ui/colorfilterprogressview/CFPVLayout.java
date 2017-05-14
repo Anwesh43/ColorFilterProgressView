@@ -22,6 +22,9 @@ public class CFPVLayout extends ViewGroup {
                 newH += 2*gap;
             }
         }
+        if(getChildCount()%3 != 0) {
+            newH += 2*gap;
+        }
         setMeasuredDimension(w,Math.max(w,newH));
     }
     public void addImage(Bitmap bitmap,int...color) {
